@@ -11,6 +11,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import { APP_PATH } from '~constants/path';
 import * as logo from '~img/logo.png';
+import { Routes } from '~pages/routes/routes';
 
 import { startUpScreenFormTheme, useStyles } from './styles';
 
@@ -102,7 +103,7 @@ export const StartUpPage: React.FC = (): JSX.Element => {
           <div className={classes.formArea}>
             <React.Suspense fallback={<CircularProgress />}>
               <ThemeProvider theme={startUpScreenFormTheme}>
-                {/* <Routes /> */}
+                <Routes />
               </ThemeProvider>
             </React.Suspense>
           </div>
