@@ -1,3 +1,4 @@
+const { DefinePlugin } = require('webpack');
 const path = require('path');
 const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
