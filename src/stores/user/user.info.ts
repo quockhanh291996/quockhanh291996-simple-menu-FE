@@ -15,3 +15,23 @@ export const UserInfo = types.model({
 });
 
 export type IUserInfo = Instance<typeof UserInfo>;
+
+export interface IUserRole {
+  id: number;
+  name: string;
+}
+
+/**
+ * This enum uses to synchonize with BE
+ * Should be the code, not the name,
+ * but I use default group of Django for demo
+ * */
+export enum USER_ROLE {
+  ADMIN = 'admin_user',
+  STANDARD = 'standard_user',
+}
+
+export const USER_ROLE_NAME = {
+  [USER_ROLE.ADMIN.toString()]: 'Admin',
+  [USER_ROLE.STANDARD.toString()]: 'Standard',
+};

@@ -4,6 +4,8 @@ import { APIHandler } from '~services/http-request/api-response.service';
 const USER_ENDPOINT = {
   REGISTER: '/users/',
   LOGIN: '/token/',
+  //
+  ROLE: '/roles/',
 };
 
 // Export the service to interact with data
@@ -14,8 +16,11 @@ export const UserService = (() => {
   const pLogin = async (params?: any) =>
     APIHandler.post(USER_ENDPOINT.LOGIN, params);
 
+  const pGetUserRoles = async () => APIHandler.get(USER_ENDPOINT.ROLE);
+
   return {
     register: pRegister,
     login: pLogin,
+    getUserRoles: pGetUserRoles,
   };
 })();

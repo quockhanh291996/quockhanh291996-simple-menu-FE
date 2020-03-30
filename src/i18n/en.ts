@@ -12,6 +12,7 @@ export const en = {
         tabName: 'Registration',
         usernamePlaceHolder: 'User name',
         emailPlaceHolder: 'Email Address',
+        rolePlaceHolder: 'Role',
         passwordPlaceHolder: 'Password',
         retypePasswordPlaceHolder: 'Retype your password',
         submitButton: 'Create your account',

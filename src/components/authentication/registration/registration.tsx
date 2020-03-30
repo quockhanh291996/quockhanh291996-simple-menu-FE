@@ -1,14 +1,15 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-import { Button, Grid, TextField } from '@material-ui/core';
+import { Button, Grid, TextField, Select } from '@material-ui/core';
 import { emailPattern } from '~common/validator';
 import { FormInput } from '~components/form-input/form-input';
 import { APP_PATH } from '~constants/path';
 import { UserService } from '~services/features/user.service';
+import { IUserRole, USER_ROLE_NAME } from '~stores/user/user.info';
 
 /**
  * Registration form here.
@@ -16,14 +17,26 @@ import { UserService } from '~services/features/user.service';
 export const RegistrationForm: React.FC = observer(
   (): JSX.Element => {
     const { t } = useTranslation();
-
     const history = useHistory();
 
-    const { register } = UserService;
+    // Roles input
+    // can use cutom form-input to control this input, but choosing the fast way for demo
+    const [userRoles, setUserRoles] = useState<IUserRole[]>([]);
+    const [currentRoleID, setCurrentRoleID] = useState<number>(-1);
+
+    const { register, getUserRoles } = UserService;
 
     /* Form hanlder */
-    const { handleSubmit, errors, watch, control } = useForm();
+    const {
+      handleSubmit,
+      errors,
+      watch,
+      control,
+      setValue,
+      register: formRegister,
+    } = useForm();
 
+    /** Component methos */
     const onRegister = async (data: any) => {
       delete data.retypePassword;
       try {
@@ -31,6 +44,34 @@ export const RegistrationForm: React.FC = observer(
         history.push(APP_PATH.LOGIN);
       } catch (e) {}
     };
+
+    const onRoleChange = (
+      event: React.ChangeEvent<{ name?: string; value: unknown }>,
+    ) => {
+      setCurrentRoleID(event.target.value as number);
+    };
+
+    /** Hooks */
+    useEffect(() => {
+      /** uesEffect doesn't accept async so wrap it in IIFE */
+      (async () => {
+        try {
+          const roles = await getUserRoles();
+          setUserRoles(roles.data);
+          setCurrentRoleID(roles.data[0].id);
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }, []);
+
+    useEffect(() => {
+      formRegister({ name: 'groups' });
+    }, [formRegister]);
+
+    useEffect(() => {
+      setValue('groups', [currentRoleID]);
+    }, [currentRoleID]);
 
     return (
       <React.Fragment>
@@ -68,6 +109,25 @@ export const RegistrationForm: React.FC = observer(
                 }}
                 label={t('startUpPage.registration.emailPlaceHolder')}
               ></FormInput>
+            </Grid>
+
+            {/*  */}
+            <Grid item>
+              <Select
+                fullWidth
+                onChange={onRoleChange}
+                defaultValue={-1}
+                value={currentRoleID}
+              >
+                <option key={`default`} value={-1} disabled>
+                  {t('startUpPage.registration.rolePlaceHolder')}
+                </option>
+                {userRoles.map((item) => (
+                  <option key={`role-${item.name}`} value={item.id}>
+                    {USER_ROLE_NAME[item.name]}
+                  </option>
+                ))}
+              </Select>
             </Grid>
 
             {/*  */}

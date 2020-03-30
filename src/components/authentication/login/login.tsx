@@ -67,12 +67,6 @@ export const LoginForm: React.FC = observer(
                 errors={errors}
                 error={!!errors.password}
                 component={TextField}
-                additionValidation={{
-                  minLength: {
-                    value: 8,
-                    message: t('form.passwordTooShort'),
-                  },
-                }}
                 label={t('startUpPage.login.passwordPlaceHolder')}
               ></FormInput>
             </Grid>

@@ -1,23 +1,28 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
 
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { muiTheme } from '~common/mui-theme';
 import { APP_PATH } from '~constants/path';
 import { Home } from '~pages/home/home';
 import { StartUpPage } from '~pages/startup/startup';
+import { globalRootStore } from '~stores/root';
 
 /**
  * App start from here
  * Basically it does all base configuration before rendering actual app
  */
-export const App: React.FunctionComponent = (): JSX.Element => {
-  const token = '';
+export const App: React.FunctionComponent = observer(
+  (): JSX.Element => {
+    const {
+      UserStore: { token },
+    } = useContext(globalRootStore);
 
-  return (
-    <ThemeProvider theme={muiTheme}>
-      <CssBaseline />
-      <HashRouter>
+    return (
+      <ThemeProvider theme={muiTheme}>
+        <CssBaseline />
+        <HashRouter>
           <Switch>
             <Route exact path={APP_PATH.LOGIN}>
               {token.length === 0 ? (
@@ -36,12 +41,13 @@ export const App: React.FunctionComponent = (): JSX.Element => {
             <Route>
               {token.length === 0 ? (
                 <Redirect to={APP_PATH.LOGIN}></Redirect>
-                ) : (
+              ) : (
                 <Home />
               )}
             </Route>
           </Switch>
         </HashRouter>
-    </ThemeProvider>
-  );
-};
+      </ThemeProvider>
+    );
+  },
+);
