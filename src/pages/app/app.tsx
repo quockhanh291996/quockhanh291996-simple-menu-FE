@@ -1,5 +1,5 @@
 import { CssBaseline } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 
 import { muiTheme } from '~common/mui-theme';
@@ -10,9 +10,9 @@ import { muiTheme } from '~common/mui-theme';
  */
 export const App: React.FunctionComponent = (): JSX.Element => {
   return (
-    <ThemeProvider theme={muiTheme}>
+    <MuiThemeProvider theme={muiTheme}>
       <CssBaseline />
       <div></div>
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 };

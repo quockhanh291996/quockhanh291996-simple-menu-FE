@@ -12,4 +12,4 @@ const rootStoreInstance = rootStore.create({});
 if (process.env.NODE_ENV === 'development') {
   makeInspectable(rootStoreInstance);
 }
-export const GlobalRootStore = React.createContext(rootStoreInstance);
+export const globalRootStore = React.createContext(rootStoreInstance);
