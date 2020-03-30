@@ -38,6 +38,7 @@ module.exports = (env) => {
           '~pages': path.resolve(settings.srcDir, 'pages'),
           '~types': path.resolve(settings.srcDir, 'types'),
           '~img': path.resolve(settings.srcDir, 'img'),
+          '~constants': path.resolve(settings.srcDir, 'constants'),
         }
       },
       /** Optimization settings */
