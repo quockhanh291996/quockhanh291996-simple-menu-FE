@@ -5,6 +5,7 @@ coverage
 dist
 trasnspiled
 bundle-info
+.env
 
 *.vscode
 .DS_Store
