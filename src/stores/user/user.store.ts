@@ -27,7 +27,7 @@ export const UserStore = types
 
           // if login sucessfully, set state and set store
           self.userState = USER_STATE.LOGIN_SUCCESS;
-          actions.setUser(cast(data.user), data.accessToken);
+          actions.setUser(cast(data.user), data.access);
         } catch (error) {
           self.userState = USER_STATE.LOGIN_FAILED;
           self.message = error.message;

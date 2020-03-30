@@ -8,13 +8,11 @@ const USER_ENDPOINT = {
 
 // Export the service to interact with data
 export const UserService = (() => {
-  const pRegister = async (params?: any) => {
-    await APIHandler.post(USER_ENDPOINT.REGISTER, params);
-  };
+  const pRegister = async (params?: any) =>
+    APIHandler.post(USER_ENDPOINT.REGISTER, params);
 
-  const pLogin = async (params?: any) => {
-    await APIHandler.post(USER_ENDPOINT.LOGIN, params);
-  };
+  const pLogin = async (params?: any) =>
+    APIHandler.post(USER_ENDPOINT.LOGIN, params);
 
   return {
     register: pRegister,

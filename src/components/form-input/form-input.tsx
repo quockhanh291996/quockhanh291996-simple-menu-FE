@@ -38,7 +38,7 @@ export const FormInput: React.FC<FormInputProps> = (props: FormInputProps) => {
         as={component as any}
         name={name}
         control={control}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || ''}
         rules={{
           required: required
             ? {
