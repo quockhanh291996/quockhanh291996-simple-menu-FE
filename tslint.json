@@ -4,7 +4,7 @@
     "tslint-eslint-rules"
   ],
   "linterOptions": {
-    "exclude": ["src/**/*.test.tsx", "src/**/*.test.ts", "src/common/test-utils.ts"]
+    "exclude": ["node_modules/**", "trasnspiled/**", "src/**/*.test.tsx", "src/**/*.test.ts", "src/common/test-utils.ts", "src/services/reactotron/*.ts"]
   },
   "rules": {
     "curly": [true, "next-line-single-line"],
@@ -40,7 +40,7 @@
     "typedef": [true, "call-signature", "parameter"],
     "no-default-export": true,
     "match-default-export-name": false,
-    "no-implicit-dependencies": [true, ["~common", "~components", "~stores", "~pages", "~types", "~img"]],
+    "no-implicit-dependencies": [true, ["~common", "~components", "~stores", "~pages", "~types", "~img", "~models", "~services", "~constants"]],
     "no-submodule-imports": false,
     "no-inferred-empty-object-type": false,
     "no-trailing-whitespace": [true, "ignore-jsdoc"],
@@ -48,17 +48,28 @@
     "object-literal-sort-keys": false,
     "one-variable-per-declaration": [true, "ignore-for-loop"],
     "only-arrow-functions": [true, "allow-named-functions"],
-    "ordered-imports": [
-      true,
-      {
-        "grouped-imports": true,
-        "named-imports-order": "lowercase-last"
-      }
-    ],
+    "ordered-imports": true,
     "promise-function-async": false,
     "strict-boolean-expressions": false,
     "quotemark": [true, "single", "jsx-double"],
     "file-name-casing": [true, "kebab-case"],
-    "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"]
+    "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
+    "no-magic-numbers":false,
+    "no-floating-promises":false,
+    "no-any":false,
+    "completed-docs":false,
+    "no-parameter-reassignment":false,
+    "no-import-side-effect":false,
+    "no-console":false,
+    "align":false,
+    "no-unused-expression":false,
+    "no-empty":false,
+    "newline-per-chained-call": false,
+    "jsdoc-format":false,
+    "newline-before-return": false,
+    "arrow-return-shorthand": false,
+    "prefer-method-signature": false,
+    "return-undefined": false,
+    "no-empty-interface": false
   }
 }
