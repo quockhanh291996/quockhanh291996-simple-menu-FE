@@ -34,7 +34,7 @@
     "react-dom": "^16.13.1",
     "react-i18next": "^10.13.2",
     "react-jss": "^8.6.1",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.1.2",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
@@ -52,7 +52,7 @@
     "@types/mobx-devtools-mst": "^0.9.7",
     "@types/react-dom": "^16.9.5",
     "@types/react-jss": "^8.6.4",
-    "@types/react-router-dom": "^4.3.5",
+    "@types/react-router-dom": "^5.1.2",
     "@types/tinycolor2": "^1.4.2",
     "@types/webpack-env": "^1.15.1",
     "@typescript-eslint/eslint-plugin-tslint": "^1.13.0",

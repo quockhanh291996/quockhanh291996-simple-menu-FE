@@ -1,5 +1,4 @@
-import { CssBaseline } from '@material-ui/core';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
@@ -16,7 +15,7 @@ export const App: React.FunctionComponent = (): JSX.Element => {
   const token = '';
 
   return (
-    <MuiThemeProvider theme={muiTheme}>
+    <ThemeProvider theme={muiTheme}>
       <CssBaseline />
       <HashRouter>
           <Switch>
@@ -43,6 +42,6 @@ export const App: React.FunctionComponent = (): JSX.Element => {
             </Route>
           </Switch>
         </HashRouter>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 };
