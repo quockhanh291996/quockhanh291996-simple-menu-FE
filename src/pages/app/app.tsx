@@ -1,13 +1,16 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
+
 import { muiTheme } from '~common/mui-theme';
 import { APP_PATH } from '~constants/path';
 import { Home } from '~pages/home/home';
 import { StartUpPage } from '~pages/startup/startup';
+import { StorageService } from '~services/storage/storage';
 import { globalRootStore } from '~stores/root';
+import { IUserInfo } from '~stores/user/user.info';
 
 /**
  * App start from here
@@ -16,8 +19,17 @@ import { globalRootStore } from '~stores/root';
 export const App: React.FunctionComponent = observer(
   (): JSX.Element => {
     const {
-      UserStore: { token },
+      UserStore: { token, setUser },
     } = useContext(globalRootStore);
+
+    useEffect(() => {
+      const userInfo = StorageService.get('user');
+      const pToken = StorageService.get('token');
+      if (userInfo && pToken) {
+        const tmpUserInfo: IUserInfo = JSON.parse(userInfo);
+        setUser(tmpUserInfo, pToken);
+      }
+    }, []);
 
     return (
       <ThemeProvider theme={muiTheme}>

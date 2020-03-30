@@ -33,6 +33,12 @@ export const UserStore = types
           self.message = error.message;
         }
       }),
+
+      logout(): void {
+        UserService.logout();
+        self.UserInfo = UserInfo.create();
+        self.token = '';
+      },
     };
 
     return actions;
