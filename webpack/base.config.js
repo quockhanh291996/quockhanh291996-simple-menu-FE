@@ -1,4 +1,5 @@
 const path = require('path');
+const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 /** Settings for various paths */
@@ -39,6 +40,7 @@ module.exports = (env) => {
           '~types': path.resolve(settings.srcDir, 'types'),
           '~img': path.resolve(settings.srcDir, 'img'),
           '~constants': path.resolve(settings.srcDir, 'constants'),
+          '~services': path.resolve(settings.srcDir, 'services'),
         }
       },
       /** Optimization settings */
@@ -108,6 +110,9 @@ module.exports = (env) => {
     ],
     /** Provide various plugins */
     plugins: [
+      new DefinePlugin({
+        'process.env': JSON.stringify(dotenv.config().parsed),
+      }),
       /** Extracts css into separate css files, creates a CSS file per JS file which contains CSS */
       new MiniCssExtractPlugin({
         filename: isProd ? '[name].[hash].css' : '[name].css',
