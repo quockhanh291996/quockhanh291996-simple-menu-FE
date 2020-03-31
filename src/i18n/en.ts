@@ -1,6 +1,9 @@
 export const en = {
   translation: {
     appTitle: 'Demo app',
+    general: {
+      logout: 'Log out',
+    },
     startUpPage: {
       login: {
         tabName: 'Login',

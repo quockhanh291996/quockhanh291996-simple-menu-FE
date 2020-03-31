@@ -36,6 +36,7 @@ export const UserStore = types
 
       logout(): void {
         UserService.logout();
+        self.userState = USER_STATE.LOGIN_NOT_LOGIN;
         self.UserInfo = UserInfo.create();
         self.token = '';
       },

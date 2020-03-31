@@ -43,6 +43,7 @@ export const App: React.FunctionComponent = observer(
                 <Redirect to={APP_PATH.DEFAULT}></Redirect>
               )}
             </Route>
+
             <Route exact path={APP_PATH.REGISTRATION}>
               {token.length === 0 ? (
                 <StartUpPage />
@@ -50,6 +51,7 @@ export const App: React.FunctionComponent = observer(
                 <Redirect to={APP_PATH.DEFAULT}></Redirect>
               )}
             </Route>
+
             <Route>
               {token.length === 0 ? (
                 <Redirect to={APP_PATH.LOGIN}></Redirect>
