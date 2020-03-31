@@ -30,6 +30,7 @@ export const ITEM_STATE = {
 
 export const Item = types.model({
   id: types.optional(types.number, 0),
+  category: types.optional(types.number, 0),
   name: types.optional(types.string, ''),
   description: types.optional(types.string, ''),
   thumbnail_image: types.optional(types.string, ''),

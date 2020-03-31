@@ -39,6 +39,7 @@ export const en = {
       submit: 'Save',
       nameLabel: 'Name',
       description: 'Description',
+      category: 'Category',
       thumbnail: 'Thumbnail',
     },
     newCategoryDialog: {
