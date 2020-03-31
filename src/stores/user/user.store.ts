@@ -1,7 +1,7 @@
 import { cast, flow, Instance, types } from 'mobx-state-tree';
 import { UserService } from '~services/features/user.service';
 import { APIResponse } from '~services/http-request/api-response.service';
-import { IUserInfo, USER_STATE, UserInfo } from './user.info';
+import { IUserInfo, USER_ROLE_NAME, USER_STATE, UserInfo } from './user.info';
 
 export const UserStore = types
   .model({
@@ -12,6 +12,14 @@ export const UserStore = types
       USER_STATE.LOGIN_NOT_LOGIN,
     ),
     message: '',
+  })
+  .views((self) => {
+    return {
+      getRoleName: () =>
+        self.UserInfo.groups.length > 0
+          ? USER_ROLE_NAME[self.UserInfo.groups[0]]
+          : '',
+    };
   })
   .actions((self) => {
     const actions = {

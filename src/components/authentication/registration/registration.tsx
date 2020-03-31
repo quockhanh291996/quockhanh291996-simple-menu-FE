@@ -124,7 +124,7 @@ export const RegistrationForm: React.FC = observer(
                 </option>
                 {userRoles.map((item) => (
                   <option key={`role-${item.name}`} value={item.id}>
-                    {USER_ROLE_NAME[item.name]}
+                    {USER_ROLE_NAME[item.id]}
                   </option>
                 ))}
               </Select>

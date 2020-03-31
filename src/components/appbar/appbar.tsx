@@ -20,7 +20,7 @@ export const Appbar: React.FC = observer(
     const classes = useStyles();
     const history = useHistory();
     const {
-      UserStore: { logout },
+      UserStore: { logout, getRoleName },
     } = useContext(globalRootStore);
 
     const onLogout = () => {
@@ -42,6 +42,8 @@ export const Appbar: React.FC = observer(
                 ></img>
               </Link>
             </Grid>
+
+            <Grid>{t('general.role', { role: getRoleName() })}</Grid>
 
             {/* Loggout button */}
             <Grid>

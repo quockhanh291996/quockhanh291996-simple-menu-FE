@@ -3,6 +3,7 @@ export const en = {
     appTitle: 'Demo app',
     general: {
       logout: 'Log out',
+      role: 'You\'re {{role}}',
     },
     startUpPage: {
       login: {
@@ -20,6 +21,9 @@ export const en = {
         retypePasswordPlaceHolder: 'Retype your password',
         submitButton: 'Create your account',
       },
+    },
+    categoryForm: {
+      title: 'Category',
     },
     form: {
       required: 'This field is required',
