@@ -17,8 +17,16 @@ export const ItemForm: React.FC = observer(() => {
   const { t } = useTranslation();
   const classes = useStyles();
   const {
+    GlobalDialogStore,
     CategoryStore: { currentCategory },
-    ItemStore: { state, itemList, fetchAllByCategory, create, update },
+    ItemStore: {
+      state,
+      itemList,
+      fetchAllByCategory,
+      create,
+      update,
+      delete: deleteItem,
+    },
   } = useContext(globalRootStore);
 
   /** State for handle the modify item dialog */
@@ -55,6 +63,16 @@ export const ItemForm: React.FC = observer(() => {
     }
   };
 
+  /** Component's method handle delet category */
+  const confirmDeleteItem = (item: IItem) => {
+    GlobalDialogStore.setType('confirmation');
+    GlobalDialogStore.setMessage(t('itemForm.confirmDelete'));
+    GlobalDialogStore.setConfirmCallback(() => {
+      deleteItem(item.id);
+    });
+    GlobalDialogStore.open();
+  };
+
   /** Hooks */
   useEffect(() => {
     /** fetch list when category change */
@@ -68,12 +86,18 @@ export const ItemForm: React.FC = observer(() => {
       return;
     }
 
-    if (
-      state === ITEM_STATE.ADD_ITEM_SUCCESS ||
-      state === ITEM_STATE.UPDATE_ITEM_SUCCESS
-    ) {
-      fetchAllByCategory(currentCategory.id);
-      closeModifyDialog();
+    switch (state) {
+      case ITEM_STATE.ADD_ITEM_SUCCESS:
+      case ITEM_STATE.UPDATE_ITEM_SUCCESS:
+        {
+          fetchAllByCategory(currentCategory.id);
+          closeModifyDialog();
+        }
+        break;
+      case ITEM_STATE.DELELE_ITEM_SUCCESS:
+        fetchAllByCategory(currentCategory.id);
+      default: {
+      }
     }
   }, [state, currentCategory]);
 
@@ -100,6 +124,7 @@ export const ItemForm: React.FC = observer(() => {
               onModify={(pSelectedItem) => {
                 showModifyDialog(MODIFY_ITEM_DIALOG_TYPE.MODIFY, pSelectedItem);
               }}
+              onDelete={confirmDeleteItem}
             />
           ))}
           {state === ITEM_STATE.FETCH_BY_CATEGORY_SUCCESS &&

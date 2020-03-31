@@ -32,6 +32,7 @@ export const en = {
       add: 'Add new item',
       delete: 'Delete',
       modify: 'Modify',
+      confirmDelete: 'Do you want to delete this item?',
     },
     modifyItemDialog: {
       addTitle: 'Add new item',
