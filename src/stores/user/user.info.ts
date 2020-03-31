@@ -8,10 +8,10 @@ export const USER_STATE = {
 };
 
 export const UserInfo = types.model({
-  id: 0,
-  username: '',
-  email: '',
-  groups: types.array(types.number), // list id of group that user is included
+  id: types.optional(types.number, 0),
+  username: types.optional(types.string, ''),
+  email: types.optional(types.string, ''),
+  groups: types.optional(types.array(types.number), []), // list id of group that user is included
 });
 
 export type IUserInfo = Instance<typeof UserInfo>;

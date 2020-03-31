@@ -18,10 +18,11 @@ export const CategoryStore = types
   .actions((self) => {
     const actions = {
       setCurrentCategory: (category: ICategory) => {
+        self.currentCategory = undefined; // There is a bug here ??
         self.currentCategory = _.cloneDeep(category);
       },
 
-      fetchAll: flow(function* pLogin(): any {
+      fetchAll: flow(function* pFetchAll(): any {
         try {
           self.state = CATEGORY_STATE.WAITING_FETCH_CATEGORY;
           const { data }: APIResponse = yield CategoryService.fetchAll();
@@ -29,7 +30,7 @@ export const CategoryStore = types
 
           // Set current category
           if (data.length > 0) {
-            self.currentCategory = cast(data[0]);
+            actions.setCurrentCategory(data[0]);
           }
 
           self.state = CATEGORY_STATE.FETCH_CATEGORY_SUCCESS;
@@ -50,7 +51,7 @@ export const CategoryStore = types
         }
       }),
 
-      delete: flow(function* pCreate(categoryID: number): any {
+      delete: flow(function* pDelete(categoryID: number): any {
         try {
           self.state = CATEGORY_STATE.WAITING_DELELE_CATEGORY;
           yield CategoryService.del(categoryID);

@@ -9,6 +9,7 @@ import {
   CategoryStore,
   CategoryStoreInstance,
 } from '~stores/category/category.store';
+import { ItemStore, ItemStoreInstance } from '~stores/item/item.store';
 import { UserStore, UserStoreInstance } from '~stores/user/user.store';
 import {
   GlobalDialogStore,
@@ -17,12 +18,14 @@ import {
 
 export const rootStore = types.model('RootStore', {
   UserStore,
+  ItemStore,
   CategoryStore,
   GlobalDialogStore,
 });
 
 const rootStoreInstance = rootStore.create({
   UserStore: UserStoreInstance,
+  ItemStore: ItemStoreInstance,
   CategoryStore: CategoryStoreInstance,
   GlobalDialogStore: GlobalDialogStoreInstance,
 });

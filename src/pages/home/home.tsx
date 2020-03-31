@@ -3,7 +3,8 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 
 import { Appbar } from '~components/appbar/appbar';
-import { CategoryForm } from '~components/category-form/category-form';
+import { CategoryForm } from '~components/category/category-form/category-form';
+import { ItemForm } from '~components/item/item-form/item-form';
 
 import { useStyles } from './styles';
 
@@ -20,14 +21,16 @@ export const Home: React.FC = observer(
       <div className={classes.container}>
         <Appbar />
         <main className={classes.mainContent}>
-          <Grid container className={classes.wrapper}>
+          <Grid container className={classes.wrapper} spacing={2} direction={'column'}>
             {/* Category form */}
-            <Grid item>
+            <Grid item className={classes.categoryForm}>
               <CategoryForm />
             </Grid>
 
             {/* Item form */}
-            <Grid item></Grid>
+            <Grid item className={classes.itemForm}>
+              <ItemForm />
+            </Grid>
           </Grid>
         </main>
       </div>

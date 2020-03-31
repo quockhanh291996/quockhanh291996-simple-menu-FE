@@ -17,8 +17,8 @@ export const CATEGORY_STATE = {
 };
 
 export const Category = types.model({
-  id: 0,
-  name: '',
+  id: types.optional(types.number, 0),
+  name: types.optional(types.string, ''),
 });
 
 export type ICategory = Instance<typeof Category>;

@@ -72,6 +72,9 @@ export const APIHandler = (() => {
   const pPut = async (url: string, data: any) =>
     runInHandleError(() => axios.put(url, data));
 
+  const pPatch = async (url: string, data: any) =>
+    runInHandleError(() => axios.patch(url, data));
+
   const pDel = async (url: string) => runInHandleError(() => axios.delete(url));
 
   return {
@@ -79,6 +82,7 @@ export const APIHandler = (() => {
     get: pGet,
     post: pPost,
     put: pPut,
+    patch: pPatch,
     del: pDel,
   };
 })();

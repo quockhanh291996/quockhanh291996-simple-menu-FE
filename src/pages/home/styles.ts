@@ -13,5 +13,12 @@ export const useStyles = makeStyles(() => ({
   wrapper: {
     margin: 80,
     width: '100%',
+    height: '100%',
+  },
+  categoryForm: {
+    height: '10%',
+  },
+  itemForm: {
+    height: '65%',
   },
 }));
