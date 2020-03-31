@@ -4,7 +4,7 @@ export const en = {
     general: {
       logout: 'Log out',
       role: 'You\'re {{role}}',
-      noData: 'Nodata',
+      noData: 'No Data',
     },
     startUpPage: {
       login: {

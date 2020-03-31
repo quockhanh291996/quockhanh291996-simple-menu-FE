@@ -1,22 +1,17 @@
 import {
-  Button,
-  Fade,
   Grid,
   IconButton,
-  Menu,
-  MenuItem,
-  Typography,
 } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { NewCategoryDialog } from '~components/category/new-category-dialog/new-category-dialog';
-import { CATEGORY_STATE, ICategory } from '~stores/category/category.info';
+import { CATEGORY_STATE } from '~stores/category/category.info';
 import { globalRootStore } from '~stores/root';
+import { CategorySelection } from '../category-selection/category-selection';
 
 export const CategoryForm: React.FC = observer(() => {
   const { t } = useTranslation();
@@ -35,26 +30,6 @@ export const CategoryForm: React.FC = observer(() => {
 
   // state to handle the add new dialog
   const [openAddNewDialog, setOpenAddNewDialog] = useState(false);
-
-  // state to handle the menu llist
-  const [categoryInfoAnchor, setCategoryInfoAnchor] = useState<
-    undefined | HTMLElement
-  >(undefined);
-  const openCategoryInfoAnchor = Boolean(categoryInfoAnchor);
-
-  /** Component's method */
-  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
-    setCategoryInfoAnchor(e.currentTarget);
-  };
-
-  const closeMenu = () => {
-    setCategoryInfoAnchor(undefined);
-  };
-
-  const changeCategory = (category: ICategory) => () => {
-    setCurrentCategory(category);
-    closeMenu();
-  };
 
   /** Component's method handle new category dialog */
   const showAddNewDialog = () => {
@@ -107,9 +82,7 @@ export const CategoryForm: React.FC = observer(() => {
 
         {/* Category selection */}
         <Grid item>
-          <Button variant={'outlined'} onClick={openMenu} endIcon={<ExpandMoreIcon/>}>
-            {currentCategory?.name ?? 'N/A'}
-          </Button>
+          <CategorySelection options={categoryList} selectedItem={currentCategory} onChange={setCurrentCategory}/>
         </Grid>
 
         <Grid item>
@@ -124,22 +97,6 @@ export const CategoryForm: React.FC = observer(() => {
           </IconButton>
         </Grid>
       </Grid>
-
-      {/* Menu contains cateogy */}
-      <Menu
-        open={openCategoryInfoAnchor}
-        anchorEl={categoryInfoAnchor}
-        TransitionComponent={Fade}
-        onClose={closeMenu}
-      >
-        {categoryList.map((item) => (
-          <MenuItem key={`category-${item.id}`} onClick={changeCategory(item)}>
-            <Typography variant="inherit" noWrap>
-              {item.name}
-            </Typography>
-          </MenuItem>
-        ))}
-      </Menu>
 
       {/* Add new dialog */}
 

@@ -49,7 +49,7 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
         ]}
       >
         <Grid container>
-          <Grid item>
+          <Grid item xs={12}>
             <label className={classes.inputLabel}>
               {t('modifyItemDialog.nameLabel')}
             </label>
@@ -65,7 +65,7 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
             ></FormInput>
           </Grid>
 
-          <Grid item>
+          <Grid item xs={12}>
             <label className={classes.inputLabel}>
               {t('modifyItemDialog.description')}
             </label>
@@ -74,14 +74,14 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
               fullWidth
               variant={'outlined'}
               control={control}
-              name="name"
+              name="description"
               errors={errors}
-              error={!!errors.name}
-              component={TextField}
+              error={!!errors.description}
+              component={<TextField multiline rows={4} rowsMax={4} />}
             ></FormInput>
           </Grid>
 
-          <Grid item>
+          <Grid item xs={12}>
             <label className={classes.inputLabel}>
               {t('modifyItemDialog.thumbnail')}
             </label>
