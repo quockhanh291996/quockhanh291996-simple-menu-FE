@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -93,7 +94,7 @@ export const CategoryForm: React.FC = observer(() => {
 
         {/* Category selection */}
         <Grid item>
-          <Button variant={'outlined'} onClick={openMenu}>
+          <Button variant={'outlined'} onClick={openMenu} endIcon={<ExpandMoreIcon/>}>
             {currentCategory?.name ?? 'N/A'}
           </Button>
         </Grid>
