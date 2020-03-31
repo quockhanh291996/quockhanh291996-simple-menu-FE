@@ -16,7 +16,9 @@ export const Interceptor: React.FC = observer(() => {
     const requestInterceptor = axios.interceptors.request.use(
       (config: AxiosRequestConfig) => {
         const token = StorageService.get('token');
-        config.headers.authorization = `Bearer ${token}`;
+        if (token) {
+          config.headers.authorization = `Bearer ${token}`;
+        }
 
         return config;
       },
