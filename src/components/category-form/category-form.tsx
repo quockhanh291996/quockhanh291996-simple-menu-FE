@@ -2,17 +2,19 @@ import {
   Button,
   Fade,
   Grid,
+  IconButton,
   Menu,
   MenuItem,
   Typography,
 } from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { globalRootStore } from '~stores/root';
 
+import { NewCategoryDialog } from '~components/new-category-dialog/new-category-dialog';
 import { ICategory } from '~stores/category/category.info';
-// import { useStyles } from './styles';
 
 export const CategoryForm: React.FC = observer(() => {
   const { t } = useTranslation();
@@ -24,8 +26,11 @@ export const CategoryForm: React.FC = observer(() => {
       setCurrentCategory,
     },
   } = useContext(globalRootStore);
-  // const classes = useStyles();
 
+  // state to handle the add new dialog
+  const [openAddNewDialog, setOpenAddNewDialog] = useState(false);
+
+  // state to handle the menu llist
   const [categoryInfoAnchor, setCategoryInfoAnchor] = useState<
     undefined | HTMLElement
   >(undefined);
@@ -45,6 +50,14 @@ export const CategoryForm: React.FC = observer(() => {
     closeMenu();
   };
 
+  const showAddNewDialog = () => {
+    setOpenAddNewDialog(true);
+  };
+
+  const closeAddNewDialog = () => {
+    setOpenAddNewDialog(false);
+  };
+
   /** Hooks */
   useEffect(() => {
     fetchAll();
@@ -57,13 +70,25 @@ export const CategoryForm: React.FC = observer(() => {
         <Grid item>{t('categoryForm.title')}:</Grid>
 
         {/* Category selection */}
-        <Grid>
+        <Grid item>
           <Button variant={'outlined'} onClick={openMenu}>
             {currentCategory?.name ?? 'N/A'}
           </Button>
         </Grid>
+
+        <Grid item>
+          <IconButton
+            color="primary"
+            aria-label="Open"
+            onClick={showAddNewDialog}
+            // className={classes.menuButton}
+          >
+            <AddCircleOutlineIcon />
+          </IconButton>
+        </Grid>
       </Grid>
 
+      {/* Menu contains cateogy */}
       <Menu
         open={openCategoryInfoAnchor}
         anchorEl={categoryInfoAnchor}
@@ -78,6 +103,10 @@ export const CategoryForm: React.FC = observer(() => {
           </MenuItem>
         ))}
       </Menu>
+
+      {/* Add new dialog */}
+
+      <NewCategoryDialog open={openAddNewDialog} onClose={closeAddNewDialog} />
     </React.Fragment>
   );
 });

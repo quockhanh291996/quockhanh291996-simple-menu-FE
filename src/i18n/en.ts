@@ -25,6 +25,11 @@ export const en = {
     categoryForm: {
       title: 'Category',
     },
+    newCategoryDialog: {
+      title: 'Add new Category',
+      actionButton: 'Add',
+      nameLabel: 'Name',
+    },
     form: {
       required: 'This field is required',
       invalidField: 'Invalid {{fieldName}}',
