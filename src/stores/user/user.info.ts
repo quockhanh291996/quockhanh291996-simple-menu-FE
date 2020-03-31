@@ -27,8 +27,8 @@ export interface IUserRole {
  * but I use default group of Django for demo
  * */
 export enum USER_ROLE {
-  ADMIN = 'admin_user',
-  STANDARD = 'standard_user',
+  ADMIN = 1,
+  STANDARD = 2,
 }
 
 export const USER_ROLE_NAME = {

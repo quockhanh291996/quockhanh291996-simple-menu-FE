@@ -5,6 +5,8 @@ import React, { useContext, useEffect } from 'react';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import { muiTheme } from '~common/mui-theme';
+import { Interceptor } from '~components/axios-intercepter/axios-intercepter';
+import { GlobalDialog } from '~components/common/global-dialog/global-dialog';
 import { APP_PATH } from '~constants/path';
 import { Home } from '~pages/home/home';
 import { StartUpPage } from '~pages/startup/startup';
@@ -33,7 +35,9 @@ export const App: React.FunctionComponent = observer(
 
     return (
       <ThemeProvider theme={muiTheme}>
+        <Interceptor token={token}/>
         <CssBaseline />
+        <GlobalDialog />
         <HashRouter>
           <Switch>
             <Route exact path={APP_PATH.LOGIN}>
@@ -43,6 +47,7 @@ export const App: React.FunctionComponent = observer(
                 <Redirect to={APP_PATH.DEFAULT}></Redirect>
               )}
             </Route>
+
             <Route exact path={APP_PATH.REGISTRATION}>
               {token.length === 0 ? (
                 <StartUpPage />
@@ -50,6 +55,7 @@ export const App: React.FunctionComponent = observer(
                 <Redirect to={APP_PATH.DEFAULT}></Redirect>
               )}
             </Route>
+
             <Route>
               {token.length === 0 ? (
                 <Redirect to={APP_PATH.LOGIN}></Redirect>
