@@ -35,5 +35,12 @@ export const en = {
       invalidField: 'Invalid {{fieldName}}',
       passwordNotMatch: 'Your password fields don\'t match',
     },
+    globalDialog: {
+      confirmationTitle: 'Confirmation',
+      errorTitle: 'Error',
+      infoTitle: 'Info',
+      okButton: 'OK',
+      cancelButton: 'Cancel',
+    },
   },
 };
