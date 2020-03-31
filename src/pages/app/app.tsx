@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from 'react';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import { muiTheme } from '~common/mui-theme';
+import { Interceptor } from '~components/axios-intercepter/axios-intercepter';
 import { APP_PATH } from '~constants/path';
 import { Home } from '~pages/home/home';
 import { StartUpPage } from '~pages/startup/startup';
@@ -33,6 +34,7 @@ export const App: React.FunctionComponent = observer(
 
     return (
       <ThemeProvider theme={muiTheme}>
+        <Interceptor />
         <CssBaseline />
         <HashRouter>
           <Switch>
