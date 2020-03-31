@@ -8,7 +8,8 @@ const CATEGORY_ENDPOINT = {
 
 // Export the service to interact with data
 export const CategoryService = (() => {
-  const pFetchAll = async () => APIHandler.get(CATEGORY_ENDPOINT.ALL);
+  /** For demo, jsut getAll withou pagination */
+  const pFetchAll = async () => APIHandler.getAll(CATEGORY_ENDPOINT.ALL);
 
   const pcreateNew = async (param?: any) =>
     APIHandler.post(CATEGORY_ENDPOINT.ALL, param);

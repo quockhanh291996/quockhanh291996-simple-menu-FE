@@ -39,7 +39,7 @@ export const UserService = (() => {
     StorageService.remove('token');
   };
 
-  const pGetUserRoles = async () => APIHandler.get(USER_ENDPOINT.ROLE);
+  const pGetUserRoles = async () => APIHandler.getAll(USER_ENDPOINT.ROLE);
 
   return {
     login: pLogin,
