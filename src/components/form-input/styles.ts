@@ -10,4 +10,7 @@ export const useStyles = makeStyles(() => ({
     paddingTop: 0,
     paddingBottom: 0,
   },
+  errorMessage: {
+    color: 'red',
+  },
 }));
