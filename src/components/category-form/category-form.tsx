@@ -23,6 +23,7 @@ export const CategoryForm: React.FC = observer(() => {
   const {
     CategoryStore: {
       state,
+      create,
       fetchAll,
       categoryList,
       currentCategory,
@@ -64,6 +65,10 @@ export const CategoryForm: React.FC = observer(() => {
     setOpenAddNewDialog(false);
   };
 
+  const onCreateCategory = (data: any) => {
+    create(data);
+  };
+
   /** Component's method handle delet category */
   const confirmDeleteCategory = () => {
     GlobalDialogStore.setType('confirmation');
@@ -78,11 +83,19 @@ export const CategoryForm: React.FC = observer(() => {
 
   /** Hooks */
   useEffect(() => {
-    if (
-      state === CATEGORY_STATE.IDLE ||
-      state === CATEGORY_STATE.DELELE_CATEGORY_SUCCESS
-    ) {
-      fetchAll();
+    switch (state) {
+      case CATEGORY_STATE.IDLE:
+      case CATEGORY_STATE.DELELE_CATEGORY_SUCCESS:
+        {
+          fetchAll();
+        }
+        break;
+      case CATEGORY_STATE.ADD_CATEGORY_SUCCESS: {
+        fetchAll();
+        closeAddNewDialog();
+      }
+      default: {
+      }
     }
   }, [state]);
 
@@ -130,7 +143,11 @@ export const CategoryForm: React.FC = observer(() => {
 
       {/* Add new dialog */}
 
-      <NewCategoryDialog open={openAddNewDialog} onClose={closeAddNewDialog} />
+      <NewCategoryDialog
+        open={openAddNewDialog}
+        onClose={closeAddNewDialog}
+        onCreate={onCreateCategory}
+      />
     </React.Fragment>
   );
 });
