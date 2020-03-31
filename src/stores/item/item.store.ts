@@ -5,7 +5,7 @@ import { ItemService } from '~services/features/item.service';
 import { APIResponse } from '~services/http-request/api-response.service';
 import { Item, ITEM_STATE } from './item.info';
 
-export const CategoryStore = types
+export const ItemStore = types
   .model({
     itemList: types.array(Item),
     currentItem: types.maybe(Item),
@@ -17,10 +17,14 @@ export const CategoryStore = types
   })
   .actions((self) => {
     const actions = {
-      fetchAllByCategory: flow(function* pFetchAllByCategory(categoryID: number): any {
+      fetchAllByCategory: flow(function* pFetchAllByCategory(
+        categoryID: number,
+      ): any {
         try {
           self.state = ITEM_STATE.WAITING_FETCH_BY_CATEGORY;
-          const { data }: APIResponse = yield ItemService.fetchAllByCategory(categoryID);
+          const { data }: APIResponse = yield ItemService.fetchAllByCategory(
+            categoryID,
+            );
           self.itemList = cast(data);
           self.state = ITEM_STATE.FETCH_BY_CATEGORY_SUCCESS;
         } catch (error) {
@@ -72,8 +76,8 @@ export const CategoryStore = types
     return actions;
   });
 
-export type ICategoryStore = Instance<typeof CategoryStore>;
+export type IItemStore = Instance<typeof ItemStore>;
 
-export const CategoryStoreInstance = CategoryStore.create({
-  categoryList: [],
+export const ItemStoreInstance = ItemStore.create({
+  itemList: [],
 });

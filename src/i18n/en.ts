@@ -26,6 +26,11 @@ export const en = {
       title: 'Category',
       confirmDelete: 'Do you want to delete this category?',
     },
+    itemForm: {
+      title: 'Items',
+      delete: 'Delete',
+      modify: 'Modify',
+    },
     newCategoryDialog: {
       title: 'Add new Category',
       actionButton: 'Add',

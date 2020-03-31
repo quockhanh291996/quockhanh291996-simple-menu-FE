@@ -2,11 +2,11 @@ import { colors, createMuiTheme } from '@material-ui/core';
 import tinycolor from 'tinycolor2';
 
 const primary = '#7B63CE';
-const secondary = '#808080';
-const warning = '#F0AC44';
+const secondary = '#d9534f';
+const warning = '#808080';
 const success = colors.green[600];
 const info = '#BFD1E5';
-const danger = '#d9534f';
+const danger = '#F0AC44';
 
 const lightenRate = 30;
 const darkenRate = 15;

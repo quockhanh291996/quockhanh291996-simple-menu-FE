@@ -103,7 +103,7 @@ export const CategoryForm: React.FC = observer(() => {
     <React.Fragment>
       <Grid container direction={'row'} spacing={2} alignItems={'center'}>
         {/* Title */}
-        <Grid item>{t('categoryForm.title')}:</Grid>
+        <Grid item xs={1}>{t('categoryForm.title')}:</Grid>
 
         {/* Category selection */}
         <Grid item>
