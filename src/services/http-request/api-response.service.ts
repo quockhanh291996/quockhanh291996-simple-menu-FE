@@ -42,6 +42,28 @@ export const APIHandler = (() => {
     }
   };
 
+  /* Get all without pagination */
+  const pGetAll = async (url: string): Promise<any> => {
+    try {
+      const response = await runInHandleError(() => axios.get(url));
+      if (response.data.next) {
+        return {
+          ...response,
+          data: [
+            ...response.data.results,
+            ...(await pGetAll(response.data.next)).data,
+          ],
+        };
+      }
+      return {
+        ...response,
+        data: [...response.data.results],
+      };
+    } catch (e) {
+      throw e;
+    }
+  };
+
   const pGet = async (url: string) => runInHandleError(() => axios.get(url));
 
   const pPost = async (url: string, data: any) =>
@@ -53,6 +75,7 @@ export const APIHandler = (() => {
   const pDel = async (url: string) => runInHandleError(() => axios.delete(url));
 
   return {
+    getAll: pGetAll,
     get: pGet,
     post: pPost,
     put: pPut,
