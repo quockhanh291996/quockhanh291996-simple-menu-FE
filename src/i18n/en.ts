@@ -1,17 +1,27 @@
 export const en = {
   translation: {
     appTitle: 'Demo app',
-    pageHeadTitle: {
-      home: 'Home',
-      counter: 'Counter',
-      dashboard: 'Dashboard',
-      routeError: 'Error loading page',
+    startUpPage: {
+      login: {
+        tabName: 'Login',
+        usernamePlaceHolder: 'User name',
+        passwordPlaceHolder: 'Password',
+        submitButton: 'Login',
+      },
+      registration: {
+        tabName: 'Registration',
+        usernamePlaceHolder: 'User name',
+        emailPlaceHolder: 'Email Address',
+        rolePlaceHolder: 'Role',
+        passwordPlaceHolder: 'Password',
+        retypePasswordPlaceHolder: 'Retype your password',
+        submitButton: 'Create your account',
+      },
     },
-    dashboard: {
-      text: 'This is dashboard',
-    },
-    routeError: {
-      text: 'There was some error while loading page. Please try again',
+    form: {
+      required: 'This field is required',
+      invalidField: 'Invalid {{fieldName}}',
+      passwordNotMatch: 'Your password fields don\'t match',
     },
   },
 };

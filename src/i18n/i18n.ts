@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { LanguageKeys } from '~common/constants';
 
+import { LanguageKeys } from '~constants/languages';
 import { en } from './en';
 
 const resources = {

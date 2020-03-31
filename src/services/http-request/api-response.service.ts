@@ -21,6 +21,7 @@ export const ApiResponseHandler = (() => {
   const pGenErrorResponse = (error: any): APIResponse => ({
     statusCode: error.response?.status ?? error.status,
     status: 'error',
+    //TODO: Need implement the function to generate all message from server
     message: error.response?.data?.message ?? error.message,
   });
 
