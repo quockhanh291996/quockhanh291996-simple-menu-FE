@@ -14,7 +14,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { NewCategoryDialog } from '~components/new-category-dialog/new-category-dialog';
+import { NewCategoryDialog } from '~components/category/new-category-dialog/new-category-dialog';
 import { CATEGORY_STATE, ICategory } from '~stores/category/category.info';
 import { globalRootStore } from '~stores/root';
 

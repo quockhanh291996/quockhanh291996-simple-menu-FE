@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 
 import { Appbar } from '~components/appbar/appbar';
-import { CategoryForm } from '~components/category-form/category-form';
+import { CategoryForm } from '~components/category/category-form/category-form';
 
 import { useStyles } from './styles';
 
