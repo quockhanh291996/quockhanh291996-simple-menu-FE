@@ -18,7 +18,7 @@ export const ItemForm: React.FC = observer(() => {
   const classes = useStyles();
   const {
     CategoryStore: { currentCategory },
-    ItemStore: { state, itemList, fetchAllByCategory },
+    ItemStore: { state, itemList, fetchAllByCategory, create, update },
   } = useContext(globalRootStore);
 
   /** State for handle the modify item dialog */
@@ -42,6 +42,19 @@ export const ItemForm: React.FC = observer(() => {
     }
   };
 
+  const onDialogSubmit = (data: any) => {
+    /** IF add new */
+    if (modifyDialogType === MODIFY_ITEM_DIALOG_TYPE.ADD) {
+      create(data);
+      return;
+    }
+
+    /** IF update new */
+    if (selectedItem) {
+      update(selectedItem?.id, data);
+    }
+  };
+
   /** Hooks */
   useEffect(() => {
     /** fetch list when category change */
@@ -49,6 +62,20 @@ export const ItemForm: React.FC = observer(() => {
       fetchAllByCategory(currentCategory.id);
     }
   }, [currentCategory]);
+
+  useEffect(() => {
+    if (!currentCategory) {
+      return;
+    }
+
+    if (
+      state === ITEM_STATE.ADD_ITEM_SUCCESS ||
+      state === ITEM_STATE.UPDATE_ITEM_SUCCESS
+    ) {
+      fetchAllByCategory(currentCategory.id);
+      closeModifyDialog();
+    }
+  }, [state, currentCategory]);
 
   return (
     <React.Fragment>
@@ -99,7 +126,7 @@ export const ItemForm: React.FC = observer(() => {
         open={openModifyDialog}
         item={selectedItem}
         onClose={closeModifyDialog}
-        onSubmit={() => {}}
+        onSubmit={onDialogSubmit}
       />
     </React.Fragment>
   );

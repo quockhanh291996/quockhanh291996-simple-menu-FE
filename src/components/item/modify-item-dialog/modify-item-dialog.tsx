@@ -41,17 +41,34 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
     const [selectedCategory, setSelectedCategory] = useState<
       ICategory | undefined
     >();
-    const [selectedThumbnail, setSelectedThumbnail] = useState<any>();
+    const [selectedThumbnailURL, setselectedThumbnailURL] = useState<string>();
+    const [selectedThumbnailFile, setselectedThumbnailFile] = useState<any>();
 
     const onThumbnailChange = (event: any) => {
-      setSelectedThumbnail(URL.createObjectURL(event.target.files[0]));
+      setselectedThumbnailFile(event.target.files[0]);
+      setselectedThumbnailURL(URL.createObjectURL(event.target.files[0]));
     };
 
     const resetForm = () => {
       setName('');
       setDescription('');
       setSelectedCategory(undefined);
-      setSelectedThumbnail(undefined);
+      setselectedThumbnailFile(undefined);
+      setselectedThumbnailURL(undefined);
+    };
+
+    const submit = (data: any) => {
+      /** Generate payload */
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('description', data.description);
+      formData.append('category', data.category);
+      if (selectedThumbnailFile) {
+        formData.append('thumbnail_image', selectedThumbnailFile);
+      }
+
+      /** Submit form */
+      onSubmit(formData);
     };
 
     /**
@@ -65,13 +82,9 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
         setSelectedCategory(
           categoryList.find((category) => category.id === item.category),
         );
-        setSelectedThumbnail(item.thumbnail_image);
+        setselectedThumbnailURL(item.thumbnail_image);
       }
     }, [item]);
-
-    useEffect(() => {
-      console.log(name);
-    }, [name]);
 
     useEffect(() => {
       register({ name: 'category' });
@@ -83,8 +96,8 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
     }, [selectedCategory]);
 
     useEffect(() => {
-      setValue('thumbnail_image', selectedThumbnail);
-    }, [selectedThumbnail]);
+      setValue('thumbnail_image', selectedThumbnailURL);
+    }, [selectedThumbnailURL]);
 
     return (
       <CDialog
@@ -102,7 +115,7 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
         actionPropsList={[
           {
             text: t('modifyItemDialog.submit'),
-            onClick: handleSubmit(onSubmit),
+            onClick: handleSubmit(submit),
           },
         ]}
       >
@@ -125,6 +138,7 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
               name="category"
               errors={errors}
               value={selectedCategory?.id}
+              defaultValue={selectedCategory?.id}
               error={!!errors.category}
               component={<TextField style={{ display: 'none' }} />}
             ></FormInput>
@@ -177,13 +191,13 @@ export const ModifyItemDialog: React.FC<ModifyItemDialogProps> = observer(
               control={control}
               name="thumbnail_image"
               errors={errors}
-              value={selectedThumbnail}
+              value={selectedThumbnailURL}
               error={!!errors.thumbnail_image}
               component={<TextField style={{ display: 'none' }} />}
             ></FormInput>
 
             {/* Preview image */}
-            <img className={classes.previewImage} src={selectedThumbnail} />
+            <img className={classes.previewImage} src={selectedThumbnailURL} />
           </Grid>
         </Grid>
       </CDialog>
