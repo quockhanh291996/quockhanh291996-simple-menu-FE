@@ -34,7 +34,7 @@ export const App: React.FunctionComponent = observer(
 
     return (
       <ThemeProvider theme={muiTheme}>
-        <Interceptor />
+        <Interceptor token={token}/>
         <CssBaseline />
         <HashRouter>
           <Switch>

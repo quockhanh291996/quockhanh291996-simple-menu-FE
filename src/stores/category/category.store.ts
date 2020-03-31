@@ -1,12 +1,14 @@
+import _ from 'lodash';
 import { cast, flow, Instance, types } from 'mobx-state-tree';
 
 import { CategoryService } from '~services/features/category.service';
 import { APIResponse } from '~services/http-request/api-response.service';
-import { Category, CATEGORY_STATE } from './category.info';
+import { Category, CATEGORY_STATE, ICategory } from './category.info';
 
 export const CategoryStore = types
   .model({
     categoryList: types.array(Category),
+    currentCategory: types.maybe(Category),
     state: types.optional(
       types.enumeration('userState', Object.values(CATEGORY_STATE)),
       CATEGORY_STATE.IDLE,
@@ -15,11 +17,21 @@ export const CategoryStore = types
   })
   .actions((self) => {
     const actions = {
+      setCurrentCategory: (category: ICategory) => {
+        self.currentCategory = _.cloneDeep(category);
+      },
+
       fetchAll: flow(function* pLogin(): any {
         try {
           self.state = CATEGORY_STATE.WAITING_FETCH_CATEGORY;
           const { data }: APIResponse = yield CategoryService.fetchAll();
-          self.categoryList = cast(data)
+          self.categoryList = cast(data);
+
+          // Set current category
+          if (data.length > 0) {
+            self.currentCategory = cast(data[0]);
+          }
+
           self.state = CATEGORY_STATE.FETCH_CATEGORY_SUCCESS;
         } catch (error) {
           self.state = CATEGORY_STATE.FETCH_CATEGORY_FAILED;
@@ -48,6 +60,13 @@ export const CategoryStore = types
           self.message = error.message;
         }
       }),
+
+      reset: () => {
+        self.categoryList = cast([]);
+        self.currentCategory = undefined;
+        self.state = CATEGORY_STATE.IDLE;
+        self.message = '';
+      },
     };
 
     return actions;

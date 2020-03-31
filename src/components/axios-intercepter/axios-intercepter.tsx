@@ -1,19 +1,18 @@
 import { AxiosRequestConfig } from 'axios';
 import { observer } from 'mobx-react-lite';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { axios } from '~services/http-request/axios';
-import { globalRootStore } from '~stores/root';
 
-export const Interceptor = observer(() => {
-  const {
-    UserStore: { token },
-  } = useContext(globalRootStore);
+export const Interceptor: React.FC<{ token: string }> = observer((props) => {
+  const { token } = props;
+  const [] = useState();
   const [authIterceptor, setAuthIterceptor] = useState<number | undefined>();
 
   const addRequestInterceptor = () => {
     const requestInterceptor = axios.interceptors.request.use(
       (config: AxiosRequestConfig) => {
+        console.log(2);
         config.headers.authorization = `Bearer ${token}`;
 
         return config;
@@ -31,17 +30,13 @@ export const Interceptor = observer(() => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token.length !== 0) {
       addRequestInterceptor();
     }
-  }, [token]);
-
-  useEffect(
-    () => () => {
+    return () => {
       removeRequestInterceptor();
-    },
-    [],
-  );
+    };
+  }, [token]);
 
   // tslint:disable-next-line: no-null-keyword
   return null;
