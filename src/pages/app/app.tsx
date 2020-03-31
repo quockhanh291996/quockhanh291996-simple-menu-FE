@@ -6,6 +6,7 @@ import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import { muiTheme } from '~common/mui-theme';
 import { Interceptor } from '~components/axios-intercepter/axios-intercepter';
+import { GlobalDialog } from '~components/common/global-dialog/global-dialog';
 import { APP_PATH } from '~constants/path';
 import { Home } from '~pages/home/home';
 import { StartUpPage } from '~pages/startup/startup';
@@ -36,6 +37,7 @@ export const App: React.FunctionComponent = observer(
       <ThemeProvider theme={muiTheme}>
         <Interceptor token={token}/>
         <CssBaseline />
+        <GlobalDialog />
         <HashRouter>
           <Switch>
             <Route exact path={APP_PATH.LOGIN}>

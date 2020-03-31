@@ -12,7 +12,6 @@ export const Interceptor: React.FC<{ token: string }> = observer((props) => {
   const addRequestInterceptor = () => {
     const requestInterceptor = axios.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        console.log(2);
         config.headers.authorization = `Bearer ${token}`;
 
         return config;

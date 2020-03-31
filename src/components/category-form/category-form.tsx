@@ -8,23 +8,27 @@ import {
   Typography,
 } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { globalRootStore } from '~stores/root';
 
 import { NewCategoryDialog } from '~components/new-category-dialog/new-category-dialog';
-import { ICategory } from '~stores/category/category.info';
+import { CATEGORY_STATE, ICategory } from '~stores/category/category.info';
+import { globalRootStore } from '~stores/root';
 
 export const CategoryForm: React.FC = observer(() => {
   const { t } = useTranslation();
   const {
     CategoryStore: {
+      state,
       fetchAll,
       categoryList,
       currentCategory,
       setCurrentCategory,
+      delete: deleteCategory,
     },
+    GlobalDialogStore,
   } = useContext(globalRootStore);
 
   // state to handle the add new dialog
@@ -50,6 +54,7 @@ export const CategoryForm: React.FC = observer(() => {
     closeMenu();
   };
 
+  /** Component's method handle new category dialog */
   const showAddNewDialog = () => {
     setOpenAddNewDialog(true);
   };
@@ -58,10 +63,27 @@ export const CategoryForm: React.FC = observer(() => {
     setOpenAddNewDialog(false);
   };
 
+  /** Component's method handle delet category */
+  const confirmDeleteCategory = () => {
+    GlobalDialogStore.setType('confirmation');
+    GlobalDialogStore.setMessage(t('categoryForm.confirmDelete'));
+    GlobalDialogStore.setConfirmCallback(() => {
+      if (currentCategory) {
+        deleteCategory(currentCategory.id);
+      }
+    });
+    GlobalDialogStore.open();
+  };
+
   /** Hooks */
   useEffect(() => {
-    fetchAll();
-  }, []);
+    if (
+      state === CATEGORY_STATE.IDLE ||
+      state === CATEGORY_STATE.DELELE_CATEGORY_SUCCESS
+    ) {
+      fetchAll();
+    }
+  }, [state]);
 
   return (
     <React.Fragment>
@@ -77,13 +99,14 @@ export const CategoryForm: React.FC = observer(() => {
         </Grid>
 
         <Grid item>
-          <IconButton
-            color="primary"
-            aria-label="Open"
-            onClick={showAddNewDialog}
-            // className={classes.menuButton}
-          >
+          <IconButton color="primary" onClick={showAddNewDialog}>
             <AddCircleOutlineIcon />
+          </IconButton>
+        </Grid>
+
+        <Grid item>
+          <IconButton color="primary" onClick={confirmDeleteCategory}>
+            <DeleteIcon />
           </IconButton>
         </Grid>
       </Grid>

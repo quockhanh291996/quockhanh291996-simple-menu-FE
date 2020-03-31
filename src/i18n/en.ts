@@ -24,6 +24,7 @@ export const en = {
     },
     categoryForm: {
       title: 'Category',
+      confirmDelete: 'Do you want to delete this category?',
     },
     newCategoryDialog: {
       title: 'Add new Category',
