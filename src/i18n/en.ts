@@ -4,6 +4,7 @@ export const en = {
     general: {
       logout: 'Log out',
       role: 'You\'re {{role}}',
+      noData: 'Nodata',
     },
     startUpPage: {
       login: {
@@ -28,8 +29,17 @@ export const en = {
     },
     itemForm: {
       title: 'Items',
+      add: 'Add new item',
       delete: 'Delete',
       modify: 'Modify',
+    },
+    modifyItemDialog: {
+      addTitle: 'Add new item',
+      modifyTitle: 'Modify item',
+      submit: 'Save',
+      nameLabel: 'Name',
+      description: 'Description',
+      thumbnail: 'Thumbnail',
     },
     newCategoryDialog: {
       title: 'Add new Category',

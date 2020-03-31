@@ -16,11 +16,13 @@ import { useStyles } from './styles';
 
 interface ItemCardProps {
   item: IItem;
+  onModify?(item: IItem): void;
+  onDelete?(item: IItem): void;
 }
 
 export const ItemCard: React.FC<ItemCardProps> = observer(
   (props: ItemCardProps) => {
-    const { item } = props;
+    const { item, onModify, onDelete } = props;
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -54,14 +56,24 @@ export const ItemCard: React.FC<ItemCardProps> = observer(
               <Grid container spacing={3} justify={'flex-end'}>
                 <Grid item>
                   {/* Modify button */}
-                  <Button variant={'outlined'} size="small" color="primary">
+                  <Button
+                    variant={'outlined'}
+                    size="small"
+                    color="primary"
+                    onClick={() => onModify ? onModify(item) : undefined}
+                  >
                     {t('itemForm.modify')}
                   </Button>
                 </Grid>
 
                 <Grid item>
                   {/* Delete button */}
-                  <Button variant={'outlined'} size="small" color="secondary">
+                  <Button
+                    variant={'outlined'}
+                    size="small"
+                    color="secondary"
+                    onClick={() => onDelete ? onDelete(item) : undefined}
+                  >
                     {t('itemForm.delete')}
                   </Button>
                 </Grid>

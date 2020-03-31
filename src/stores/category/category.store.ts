@@ -18,6 +18,7 @@ export const CategoryStore = types
   .actions((self) => {
     const actions = {
       setCurrentCategory: (category: ICategory) => {
+        self.currentCategory = undefined; // There is a bug here ?? 
         self.currentCategory = _.cloneDeep(category);
       },
 
