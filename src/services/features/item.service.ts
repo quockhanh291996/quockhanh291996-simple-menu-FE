@@ -3,7 +3,7 @@ import { APIHandler } from '~services/http-request/api-response.service';
 // List endpoint to get data related to item
 const ITEM_ENDPOINT = {
   ALL: '/items/',
-  DETAIL: (itemID: number) => `/items/${itemID}`,
+  DETAIL: (itemID: number) => `/items/${itemID}/`,
 };
 
 // Export the service to interact with data
@@ -19,7 +19,7 @@ export const ItemService = (() => {
     APIHandler.post(ITEM_ENDPOINT.ALL, param);
 
   const pUpdateNew = async (categoryID: number, param?: any) =>
-    APIHandler.post(ITEM_ENDPOINT.DETAIL(categoryID), param);
+    APIHandler.patch(ITEM_ENDPOINT.DETAIL(categoryID), param);
 
   const pDel = async (categoryID: number) =>
     APIHandler.del(ITEM_ENDPOINT.DETAIL(categoryID));

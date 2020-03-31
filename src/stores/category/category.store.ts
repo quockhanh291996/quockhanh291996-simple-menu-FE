@@ -21,7 +21,7 @@ export const CategoryStore = types
         self.currentCategory = _.cloneDeep(category);
       },
 
-      fetchAll: flow(function* pLogin(): any {
+      fetchAll: flow(function* pFetchAll(): any {
         try {
           self.state = CATEGORY_STATE.WAITING_FETCH_CATEGORY;
           const { data }: APIResponse = yield CategoryService.fetchAll();
@@ -50,7 +50,7 @@ export const CategoryStore = types
         }
       }),
 
-      delete: flow(function* pCreate(categoryID: number): any {
+      delete: flow(function* pDelete(categoryID: number): any {
         try {
           self.state = CATEGORY_STATE.WAITING_DELELE_CATEGORY;
           yield CategoryService.del(categoryID);

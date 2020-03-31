@@ -3,7 +3,7 @@ import { APIHandler } from '~services/http-request/api-response.service';
 // List endpoint to get data related to category
 const CATEGORY_ENDPOINT = {
   ALL: '/categories/',
-  DETAIL: (categoryID: number) => `/categories/${categoryID}`,
+  DETAIL: (categoryID: number) => `/categories/${categoryID}/`,
 };
 
 // Export the service to interact with data
