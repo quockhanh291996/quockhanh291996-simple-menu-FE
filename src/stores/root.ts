@@ -5,9 +5,30 @@ import makeInspectable from 'mobx-devtools-mst';
 import { types } from 'mobx-state-tree';
 import React from 'react';
 
-export const rootStore = types.model('RootStore', {});
+import {
+  CategoryStore,
+  CategoryStoreInstance,
+} from '~stores/category/category.store';
+import { ItemStore, ItemStoreInstance } from '~stores/item/item.store';
+import { UserStore, UserStoreInstance } from '~stores/user/user.store';
+import {
+  GlobalDialogStore,
+  GlobalDialogStoreInstance,
+} from './global-dialog.store';
 
-const rootStoreInstance = rootStore.create({});
+export const rootStore = types.model('RootStore', {
+  UserStore,
+  ItemStore,
+  CategoryStore,
+  GlobalDialogStore,
+});
+
+const rootStoreInstance = rootStore.create({
+  UserStore: UserStoreInstance,
+  ItemStore: ItemStoreInstance,
+  CategoryStore: CategoryStoreInstance,
+  GlobalDialogStore: GlobalDialogStoreInstance,
+});
 
 if (process.env.NODE_ENV === 'development') {
   makeInspectable(rootStoreInstance);

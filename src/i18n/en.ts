@@ -1,17 +1,64 @@
 export const en = {
   translation: {
     appTitle: 'Demo app',
-    pageHeadTitle: {
-      home: 'Home',
-      counter: 'Counter',
-      dashboard: 'Dashboard',
-      routeError: 'Error loading page',
+    general: {
+      logout: 'Log out',
+      role: 'You\'re {{role}}',
+      noData: 'No Data',
     },
-    dashboard: {
-      text: 'This is dashboard',
+    startUpPage: {
+      login: {
+        tabName: 'Login',
+        usernamePlaceHolder: 'User name',
+        passwordPlaceHolder: 'Password',
+        submitButton: 'Login',
+      },
+      registration: {
+        tabName: 'Registration',
+        usernamePlaceHolder: 'User name',
+        emailPlaceHolder: 'Email Address',
+        rolePlaceHolder: 'Role',
+        passwordPlaceHolder: 'Password',
+        retypePasswordPlaceHolder: 'Retype your password',
+        submitButton: 'Create your account',
+      },
     },
-    routeError: {
-      text: 'There was some error while loading page. Please try again',
+    categoryForm: {
+      title: 'Category',
+      confirmDelete: 'Do you want to delete this category?',
+    },
+    itemForm: {
+      title: 'Items',
+      add: 'Add new item',
+      delete: 'Delete',
+      modify: 'Modify',
+      confirmDelete: 'Do you want to delete this item?',
+    },
+    modifyItemDialog: {
+      addTitle: 'Add new item',
+      modifyTitle: 'Modify item',
+      submit: 'Save',
+      nameLabel: 'Name',
+      description: 'Description',
+      category: 'Category',
+      thumbnail: 'Thumbnail',
+    },
+    newCategoryDialog: {
+      title: 'Add new Category',
+      actionButton: 'Add',
+      nameLabel: 'Name',
+    },
+    form: {
+      required: 'This field is required',
+      invalidField: 'Invalid {{fieldName}}',
+      passwordNotMatch: 'Your password fields don\'t match',
+    },
+    globalDialog: {
+      confirmationTitle: 'Confirmation',
+      errorTitle: 'Error',
+      infoTitle: 'Info',
+      okButton: 'OK',
+      cancelButton: 'Cancel',
     },
   },
 };

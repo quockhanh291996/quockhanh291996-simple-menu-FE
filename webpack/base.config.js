@@ -1,3 +1,4 @@
+const { DefinePlugin } = require('webpack');
 const path = require('path');
 const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -39,6 +40,7 @@ module.exports = (env) => {
           '~pages': path.resolve(settings.srcDir, 'pages'),
           '~types': path.resolve(settings.srcDir, 'types'),
           '~img': path.resolve(settings.srcDir, 'img'),
+          '~constants': path.resolve(settings.srcDir, 'constants'),
           '~services': path.resolve(settings.srcDir, 'services'),
         }
       },
