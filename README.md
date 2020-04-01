@@ -88,6 +88,11 @@ Installation
 	npm start
 ```
 
+### Tested Environment
+* OS: MacOS
+* Python: 3.7.3
+* Node: 12.16
+
 ### API Design
 ### Token
 | METHOD | URL | Body | Purpose |
