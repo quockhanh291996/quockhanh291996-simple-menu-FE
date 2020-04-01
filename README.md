@@ -8,7 +8,7 @@ This appilication contains:
 * 2 models
   * Category: The category of menu, contains many items
   * Item: The menu items that are related with menu
- * 2 roles of user:
+* 2 roles of user:
   * Admin: Have all permissions with models
   * Standard: Just view the result
  
@@ -62,6 +62,17 @@ Installation
 	python manage.py init_menu_permission
 	python manage.py init_user_permission
 	python manage.py runserver
+```
+
+**If you want use another database, please setup package and add configuration to .env file**
+```sh
+    # Configuration for database
+    DATABASE_ENGINE=
+    DATABASE_NAME=
+    DATABASE_USER=
+    DATABASE_PASSWORD=
+    DATABASE_HOST=
+    DATABASE_PORT=
 ```
 
 ### Front end ([Git](https://github.com/quockhanh291996/simple-menu-FE))
