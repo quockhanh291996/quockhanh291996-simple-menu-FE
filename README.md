@@ -1,4 +1,4 @@
-# SIMPLE MENU 
+# SIMPLE MENU
 
 # Summary
 Welcome to a small project creat for the menu. 
@@ -32,7 +32,7 @@ We split the application to 2 project:
 Installation
 ----
 
-### Back-end
+### Back-end ([Git](https://github.com/quockhanh291996/simple-menu-BE))
 **NOTE: I haven't write script to setup the virtual environment for Back-end, so if you want run it in a virtual environment, please setup by yourself**
 
 1/ Access the project directory
@@ -64,7 +64,7 @@ Installation
 	python manage.py runserver
 ```
 
-### Front end
+### Front end ([Git](https://github.com/quockhanh291996/simple-menu-FE))
 1/ Access the project directory
 
 2/ Installl requirements 
